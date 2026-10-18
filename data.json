@@ -1,0 +1,24 @@
+{
+  "project": "Rohingya AI Language Initiative",
+  "version": "1.0",
+  "description": "Community-reviewed Rohingya language resources for education and AI research",
+  "entries": [
+    {
+      "id": 1,
+      "type": "greeting",
+      "rohingya": "",
+      "english": "",
+      "bengali": "",
+      "verified": false
+    },
+    {
+      "id": 2,
+      "type": "question_answer",
+      "question_rohingya": "",
+      "answer_rohingya": "",
+      "question_english": "",
+      "answer_english": "",
+      "verified": false
+    }
+  ]
+}
