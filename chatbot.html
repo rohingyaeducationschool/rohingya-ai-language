@@ -1,1 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Rohingya AI Chatbot | RALI</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f7f6;
+      color: #263238;
+    }
+
+    header {
+      background: #075e54;
+      color: white;
+      text-align: center;
+      padding: 22px 12px;
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 24px;
+    }
+
+    header p {
+      margin: 0;
+    }
+
+    .container {
+      max-width: 750px;
+      margin: 25px auto;
+      padding: 0 12px;
+    }
+
+    .chatbox {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .chat-title {
+      background: #128c7e;
+      color: white;
+      padding: 15px;
+      font-weight: bold;
+    }
+
+    #messages {
+      height: 380px;
+      overflow-y: auto;
+      padding: 15px;
+    }
+
+    .message {
+      max-width: 90%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 10px;
+      overflow-wrap: anywhere;
+      white-space: pre-wrap;
+    }
+
+    .bot {
+      background: #e5f3ef;
+      margin-right: auto;
+    }
+
+    .user {
+      background: #d9fdd3;
+      margin-left: auto;
+    }
+
+    .rtl {
+      direction: rtl;
+      unicode-bidi: plaintext;
+      text-align: right;
+      font-size: 20px;
+      line-height: 1.9;
+    }
+
+    .input-area {
+      display: flex;
+      gap: 8px;
+      padding: 12px;
+      border-top: 1px solid #ddd;
+    }
+
+    #question {
+      flex: 1;
+      min-width: 0;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      font-size: 16px;
+    }
+
+    #send {
+      border: none;
+      border-radius: 7px;
+      padding: 12px 18px;
+      background: #128c7e;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #send:disabled {
+      opacity: 0.6;
+    }
+
+    .note {
+      background: white;
+      padding: 15px;
+      margin-top: 18px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      background: #064c44;
+      color: white;
+      padding: 18px 10px;
+      margin-top: 30px;
+    }
+
+    footer a {
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Rohingya AI Chatbot</h1>
+  <p>Rohingya AI Language Initiative (RALI)</p>
+</header>
+
+<main class="container">
+
+  <section class="chatbox">
+
+    <div class="chat-title">
+      💬 Rohingya Language Assistant
+    </div>
+
+    <div id="messages" aria-live="polite">
+      <div class="message bot">
+        Welcome! You can ask a question about the available
+        Rohingya language resources.
+
+        <br><br>
+
+        স্বাগতম! উপলভ্য রোহিঙ্গা ভাষার তথ্য সম্পর্কে প্রশ্ন করুন।
+      </div>
+    </div>
+
+    <form class="input-area" id="chat-form">
+      <input
+        id="question"
+        type="text"
+        placeholder="Type your question..."
+        aria-label="Type your question"
+        required
+        autocomplete="off"
+      >
+
+      <button id="send" type="submit">Send</button>
+    </form>
+
+  </section>
+
+  <section class="note">
+    <strong>About this chatbot</strong>
+    <p>
+      This is an early demonstration that searches the project's
+      local language dataset. It is not yet connected to an AI model.
+      Answers may be unavailable until verified data is added.
+    </p>
+  </section>
+
+  <p style="text-align:center">
+    <a href="index.html">← Back to Home</a>
+  </p>
+
+</main>
+
+<footer>
+  <p>Rohingya AI Language Initiative (RALI)</p>
+  <p>Preserving Our Language. Empowering Our Future.</p>
+  <p>© 2026 RALI</p>
+</footer>
+
+<script>
+  const messages = document.getElementById("messages");
+  const form = document.getElementById("chat-form");
+  const input = document.getElementById("question");
+  const sendButton = document.getElementById("send");
+
+  let languageData = null;
+
+  async function loadData() {
+    try {
+      const response = await fetch("./data.json");
+
+      if (!response.ok) {
+        throw new Error("Dataset could not be loaded.");
+      }
+
+      languageData = await response.json();
+    } catch (error) {
+      languageData = null;
+    }
+  }
+
+  function addMessage(text, sender, rtl = false) {
+    const message = document.createElement("div");
+
+    message.className = "message " + sender;
+    message.textContent = text;
+
+    if (rtl) {
+      message.classList.add("rtl");
+      message.dir = "rtl";
+    }
+
+    messages.appendChild(message);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function normalize(text) {
+    return String(text || "")
+      .normalize("NFC")
+      .toLocaleLowerCase()
+      .trim()
+      .replace(/\s+/g, " ");
+  }
+
+  function findAnswer(question) {
+    if (!languageData || !Array.isArray(languageData.entries)) {
+      return {
+        text: "The language dataset could not be loaded. Please try again later."
+      };
+    }
+
+    const query = normalize(question);
+
+    if (!query) {
+      return {
+        text: "Please enter a question."
+      };
+    }
+
+    const entries = languageData.entries.filter(
+      entry => entry && entry.verified === true
+    );
+
+    for (const entry of entries) {
+      const candidates = [
+        entry.rohingya,
+        entry.question_rohingya,
+        entry.english,
+        entry.question_english,
+        entry.bengali
+      ].filter(value => typeof value === "string" && value.trim());
+
+      const matched = candidates.some(
+        value => normalize(value) === query
+      );
+
+      if (matched) {
+        const answer =
+          entry.answer_rohingya ||
+          entry.rohingya ||
+          entry.english ||
+          entry.bengali;
+
+        if (answer) {
+          return {
+            text: answer,
+            rtl: Boolean(entry.answer_rohingya || entry.rohingya)
+          };
+        }
+      }
+    }
+
+    return {
+      text:
+        "Sorry, I could not find a verified answer in the current dataset. " +
+        "More Rohingya language examples need to be added and reviewed."
+    };
+  }
+
+  form.addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const question = input.value.trim();
+
+    if (!question) return;
+
+    addMessage(question, "user");
+    input.value = "";
+    sendButton.disabled = true;
+
+    if (languageData === null) {
+      await loadData();
+    }
+
+    const result = findAnswer(question);
+
+    addMessage(result.text, "bot", result.rtl === true);
+
+    sendButton.disabled = false;
+    input.focus();
+  });
+
+  loadData();
+</script>
+
+</body>
+</html>
