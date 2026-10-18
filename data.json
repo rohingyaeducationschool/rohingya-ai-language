@@ -9,7 +9,7 @@
       "question_rohingya": "𐴀𐴡𐴦𐴕𐴡𐴌 𐴕𐴝𐴔 𐴑𐴞",
       "answer_english": "My name is ChatGPT.",
       "answer_rohingya": "𐴀𐴝𐴣𐴀𐴌 𐴕𐴝𐴔 𐴆𐴠𐴀𐴄𐴢 𐴅𐴞𐴂𐴞𐴄𐴞",
-      "verified": true
+      "verified": false
     },
     {
       "id": 2,
@@ -18,6 +18,33 @@
       "question_rohingya": "𐴀𐴡𐴦𐴕𐴠 𐴑𐴠𐴀𐴕 𐴀𐴝𐴏𐴡𐴕",
       "answer_english": "",
       "answer_rohingya": "𐴀𐴝𐴀𐴛 𐴒𐴡𐴀𐴔 𐴀𐴝𐴏𐴞",
+      "verified": false
+    },
+    {
+      "id": 3,
+      "type": "question_answer",
+      "question_english": "Where do you live?",
+      "question_rohingya": "𐴀𐴡𐴦𐴕𐴠 𐴇𐴡𐴍𐴠𐴥 𐴃𐴝𐴥𐴑𐴡𐴤",
+      "answer_english": "",
+      "answer_rohingya": "𐴀𐴝𐴀𐴛 𐴑𐴠𐴀𐴔 𐴉𐴡𐴥𐴃𐴢 𐴃𐴝𐴑𐴞",
+      "verified": false
+    },
+    {
+      "id": 4,
+      "type": "question_answer",
+      "question_english": "What do you do?",
+      "question_rohingya": "𐴀𐴡𐴦𐴕𐴠 𐴑𐴞 𐴒𐴡𐴌𐴡𐴥",
+      "answer_english": "",
+      "answer_rohingya": "𐴀𐴝𐴀𐴛 𐴀𐴟𐴒𐴧𐴗𐴝 𐴉𐴡𐴌𐴡𐴙𐴕𐴝 𐴉𐴟𐴖𐴝/ 𐴀𐴝𐴀𐴛 𐴉𐴡𐴕𐴧𐴝𐴤 𐴉𐴡𐴌𐴞",
+      "verified": false
+    },
+    {
+      "id": 5,
+      "type": "question_answer",
+      "question_english": "Which language do you speak?",
+      "question_rohingya": "𐴀𐴡𐴦𐴕𐴠 𐴈𐴡𐴤𐴕 𐴎𐴟𐴁𐴝𐴕𐴡𐴃𐴢 𐴈𐴡𐴁𐴝𐴤 𐴈𐴡",
+      "answer_english": "",
+      "answer_rohingya": "𐴀𐴝𐴀𐴛 𐴌𐴟𐴇𐴝𐴙𐴚𐴒𐴙𐴝 𐴎𐴟𐴁𐴝𐴕𐴡𐴃𐴢 𐴈𐴡𐴁𐴝𐴤 𐴇𐴡𐴘",
       "verified": false
     }
   ]
