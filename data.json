@@ -10,7 +10,15 @@
       "answer_english": "My name is ChatGPT.",
       "answer_rohingya": "𐴀𐴝𐴣𐴀𐴌 𐴕𐴝𐴔 𐴆𐴠𐴀𐴄𐴢 𐴅𐴞𐴂𐴞𐴄𐴞",
       "verified": true
+    },
+    {
+      "id": 2,
+      "type": "question_answer",
+      "question_english": "How are you?",
+      "question_rohingya": "𐴀𐴡𐴦𐴕𐴠 𐴑𐴠𐴀𐴕 𐴀𐴝𐴏𐴡𐴕",
+      "answer_english": "",
+      "answer_rohingya": "𐴀𐴝𐴀𐴛 𐴒𐴡𐴀𐴔 𐴀𐴝𐴏𐴞",
+      "verified": false
     }
   ]
 }
-      
