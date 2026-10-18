@@ -1,24 +1,16 @@
 {
   "project": "Rohingya AI Language Initiative",
   "version": "1.0",
-  "description": "Community-reviewed Rohingya language resources for education and AI research",
   "entries": [
     {
       "id": 1,
-      "type": "greeting",
-      "rohingya": "",
-      "english": "",
-      "bengali": "",
-      "verified": false
-    },
-    {
-      "id": 2,
       "type": "question_answer",
-      "question_rohingya": "",
-      "answer_rohingya": "",
-      "question_english": "",
-      "answer_english": "",
-      "verified": false
+      "question_english": "What's your name?",
+      "question_rohingya": "𐴀𐴡𐴦𐴕𐴡𐴌 𐴕𐴝𐴔 𐴑𐴞",
+      "answer_english": "My name is ChatGPT.",
+      "answer_rohingya": "𐴀𐴝𐴣𐴀𐴌 𐴕𐴝𐴔 𐴆𐴠𐴀𐴄𐴢 𐴅𐴞𐴂𐴞𐴄𐴞",
+      "verified": true
     }
   ]
 }
+      
